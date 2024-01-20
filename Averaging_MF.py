@@ -22,14 +22,15 @@ for a,b,c in zip(np.mean(q, axis = 0), np.mean(tau, axis = 0), np.std(tau, axis 
 
 M=['R_Normal','R_Non-COVID-19','R_COVID-19']
 L = ['izquierdo','derecho']
-S = [922,787,1804]
+S = [922,787,1804]       # Número de muestras por clase
 Errors=[]
 
 for l in L:
 	for m,s in zip(M,S):
 		a=[]; f=[]
-		for i in range(1,s+1):
+		for i in range(1,s+1):      # Recorre todas las radiografías de cada clase
 			pa=[];pf=[]
+			
 			with open(m+'/2D_MFDFA_Pulmón_N'+str(i)+'_'+l+'/MF-spectrum.txt') as csvfile:
 				readCSV = csv.reader(csvfile, delimiter=' ')
 				for A in readCSV:

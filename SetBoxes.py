@@ -4,7 +4,7 @@ import os
 version = 0, versión reducida (infection Segmentation Data)
 version = 1, versión de datos totales (Lung Segmentation Data)
 """
-version = 0
+version = 1
 
 if version == 0:
     path_covid_origen = "Data_Source/COVID-QU-Ex dataset/Infection Segmentation Data/Infection Segmentation Data/Train/COVID-19/images"

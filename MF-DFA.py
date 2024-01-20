@@ -30,18 +30,20 @@ my_dict_back = np.load('../../../../../../media/carlos/DATA/Jardi/Train/COVID-19
 dic_boxes = my_dict_back['boxes'].item()
 
 ###################################################################
+
 for side in dic_boxes.keys(): # Recorre cada lado
 	createFolder('2D_MFDFA_Pulmón_N'+str(num)+'_'+str(side)+'/')
-	M=[];Q=np.arange(qmin-dq,qmax+2*dq,dq);NQ=len(Q);Mpre=[]
+	M=[];Q=np.arange(qmin-dq,qmax+2*dq,dq);NQ=len(Q);Mpre=[]  # Crea una lista con los valores de Q en función de qmin y qmax
 
 	for j in range(NQ+1):
 		M.append([]);Mpre.append([])
 
 	for len_s in dic_boxes[side]: # Recorre cada tamano de caja
+		# tx malla de la caja
 		tx = np.array(range(int(len_s))); ty = tx; TX, TY = np.meshgrid(tx, ty) #es necesario para hacer el fit
 		F=[]
-		for box in range(dic_boxes[side][len_s].shape[0]): # Recorre cada caja
-			Sub_IM = dic_boxes[side][len_s][box] #renombro mi sub-matriz
+		for box in range(dic_boxes[side][len_s].shape[0]): # Recorre cada caja de un determinado tamaño
+			Sub_IM = dic_boxes[side][len_s][box] #renombro la caja a anlizar
 
 			Sub_IM = Sub_IM - np.mean(Sub_IM) #restamos la media
 			IM = multidim_cumsum(Sub_IM) #calculo la integracion de la superficie
